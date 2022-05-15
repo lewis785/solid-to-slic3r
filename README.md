@@ -26,12 +26,12 @@ npm link
 
 ### Command Line Interface (CLI)
 
-Once setup is complete a new cli command will be available called `convert`.
+Once setup is complete a new cli command will be available called `solidConvert`.
 
 Example without including file path
 
 ```bash
-Usage: convert -f test_file.gcode
+Usage: solidConvert -f test_file.gcode
 
 Options:
       --version  Show version number                [boolean]
@@ -43,7 +43,7 @@ Missing required argument: file
 Example command use
 
 ```
-convert --file test_file.gcode
+solidConvert --file test_file.gcode
 ```
 
 This will create a file called `converted_file.txt` in the current directory.
@@ -51,7 +51,7 @@ This will create a file called `converted_file.txt` in the current directory.
 Example without including file path
 
 ```bash
-Usage: convert -f test_file.gcode
+Usage: solidConvert -f test_file.gcode
 
 Options:
       --version  Show version number                [boolean]

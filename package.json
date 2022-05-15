@@ -4,7 +4,7 @@
   "main": "build/index.js",
   "license": "MIT",
   "bin": {
-    "convert": "./build/index.js"
+    "solidConvert": "./build/index.js"
   },
   "scripts": {
     "build-watch": "tsc --watch",
