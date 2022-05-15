@@ -1,0 +1,26 @@
+{
+  "name": "solid-to-slic3r",
+  "version": "1.0.0",
+  "main": "build/index.js",
+  "license": "MIT",
+  "bin": {
+    "convert": "./build/index.js"
+  },
+  "scripts": {
+    "build-watch": "tsc --watch",
+    "build": "tsc",
+    "setup-cli": "npm link"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.33",
+    "@types/yargs": "^17.0.10",
+    "typescript": "^4.6.4"
+  },
+  "volta": {
+    "node": "16.15.0",
+    "yarn": "1.22.18"
+  },
+  "dependencies": {
+    "yargs": "^17.5.0"
+  }
+}
