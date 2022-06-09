@@ -28,18 +28,18 @@ const convertG1Command = (line: string) => {
 const addPsoCommands = (lines: string[]) => {
   let psoOn = false;
   const isG1Command = /^G1/;
-  const containsZeros = /0.00000/;
+  const hasDepthValue = / [0-9].00000$/;
 
   return lines.reduce<string[]>((output, line, index) => {
     if (!isG1Command.test(line)) {
       return [...output, line];
     }
 
-    if (!containsZeros.test(line) && containsZeros.test(lines[index + 1])) {
+    if (!hasDepthValue.test(line) && hasDepthValue.test(lines[index + 1])) {
       return [...output, "PSOCONTROL X ON", line];
     }
 
-    if (containsZeros.test(line) && !containsZeros.test(lines[index + 1])) {
+    if (hasDepthValue.test(line) && !hasDepthValue.test(lines[index + 1])) {
       return [...output, line, "PSOCONTROL X OFF"];
     }
 
