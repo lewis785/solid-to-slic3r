@@ -27,6 +27,15 @@ const convertG1Command = (line: string) => {
   return `G1 ${values.join(" ")}`;
 };
 
+const convertLineValues = (lines: string[]) => {
+  return lines.map((line) => {
+    if (isG1Command.test(line)) {
+      return convertG1Command(line);
+    }
+    return line;
+  });
+};
+
 const addPsoCommands = (lines: string[]) => {
   const hasDepthValue = / [0-9].00000$/;
 
@@ -53,13 +62,16 @@ export const converter = (filepath: string) => {
     .replace(/\r\n/g, "\n")
     .split("\n");
 
-  const output = addPsoCommands(removeNonRequiredCommands(input)).map(
-    (line) => {
-      if (/^G1/.test(line)) {
-        return convertG1Command(line);
-      }
-      return line;
-    }
+  console.log(`Total lines to convert: ${input.length}`);
+
+  console.log("- Removing non required commands");
+  let output = removeNonRequiredCommands(input);
+  console.log("- Adding Pso commands");
+  output = addPsoCommands(output);
+  console.log("- Converting values");
+  output = convertLineValues(output);
+  console.log(
+    `Completed | Lines before: ${input.length} | Lines after: ${output.length}`
   );
 
   writeFileSync("converted_file.txt", output.join("\n"));
