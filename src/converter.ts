@@ -44,11 +44,13 @@ const addPsoCommands = (lines: string[]) => {
       return [...output, line];
     }
 
-    if (!hasDepthValue.test(line) && hasDepthValue.test(lines[index + 1])) {
+    const nextLine = lines[index + 1];
+
+    if (!hasDepthValue.test(line) && hasDepthValue.test(nextLine)) {
       return [...output, line, "PSOCONTROL X ON"];
     }
 
-    if (hasDepthValue.test(line) && !hasDepthValue.test(lines[index + 1])) {
+    if (hasDepthValue.test(line) && !hasDepthValue.test(nextLine)) {
       return [...output, line, "PSOCONTROL X OFF"];
     }
 
