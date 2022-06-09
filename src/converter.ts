@@ -28,7 +28,7 @@ const convertG1Command = (line: string) => {
   return `G1 ${values.join(" ")}`;
 };
 
-const convertLineValues = (lines: string[]) => {
+const convertMeasurementToMilometers = (lines: string[]) => {
   return lines.map((line) => {
     if (isG1Command.test(line)) {
       return convertG1Command(line);
@@ -67,12 +67,12 @@ export const converter = (filepath: string) => {
 
   console.log(`Total lines to convert: ${input.length}`);
 
-  console.log("- Removing non required commands");
+  console.log("- Removing non-required commands");
   let output = removeNonRequiredCommands(input);
   console.log("- Adding Pso commands");
   output = addPsoCommands(output);
-  console.log("- Converting values");
-  output = convertLineValues(output);
+  console.log("- Converting measurements to milometers");
+  output = convertMeasurementToMilometers(output);
   console.log(
     `Completed | Lines before: ${input.length} | Lines after: ${output.length}`
   );
