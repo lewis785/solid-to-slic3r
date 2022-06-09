@@ -15,8 +15,9 @@ const convertG1Command = (line: string) => {
 
   for (const group of groups) {
     const number = (parseFloat(group[2]) / 1000)
-      .toPrecision(15)
-      .replace(/0+$/, "");
+      .toFixed(15)
+      .replace(/0+$/, "")
+      .replace(/([0-9]+)\.$/, "$1.00000");
     values.push(`${group[1]}${number}`);
   }
 
