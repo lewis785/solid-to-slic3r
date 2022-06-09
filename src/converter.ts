@@ -1,5 +1,7 @@
 import { readFileSync, writeFileSync } from "fs";
 
+const isG1Command = /^G1/;
+
 const removeNonRequiredCommands = (lines: string[]): string[] => {
   const nonAcceptedCommandsRegex = /^[M|S|;]/;
   return lines.filter((line) => !nonAcceptedCommandsRegex.test(line));
@@ -26,8 +28,6 @@ const convertG1Command = (line: string) => {
 };
 
 const addPsoCommands = (lines: string[]) => {
-  let psoOn = false;
-  const isG1Command = /^G1/;
   const hasDepthValue = / [0-9].00000$/;
 
   return lines.reduce<string[]>((output, line, index) => {
