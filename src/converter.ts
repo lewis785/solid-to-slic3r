@@ -1,7 +1,8 @@
 import { readFileSync, writeFileSync } from "fs";
 
 const removeNonRequiredCommands = (lines: string[]): string[] => {
-  return lines.filter((line) => !/^[M|S|;]/.test(line));
+  const nonAcceptedCommandsRegex = /^[M|S|;]/;
+  return lines.filter((line) => !nonAcceptedCommandsRegex.test(line));
 };
 
 const convertG1Command = (line: string) => {
