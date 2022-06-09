@@ -36,7 +36,7 @@ const addPsoCommands = (lines: string[]) => {
     }
 
     if (!hasDepthValue.test(line) && hasDepthValue.test(lines[index + 1])) {
-      return [...output, "PSOCONTROL X ON", line];
+      return [...output, line, "PSOCONTROL X ON"];
     }
 
     if (hasDepthValue.test(line) && !hasDepthValue.test(lines[index + 1])) {
